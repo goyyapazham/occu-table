@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html>
+  
+  <head>
+    <title>{{ title }}</title>
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Text" rel="stylesheet">
+  </head>
+
+  <style>
+    body {
+    font-family: 'Crimson Text', serif;
+    padding: 5%;
+    }
+
+    span {
+    color: rgb({{r}},{{g}},{{b}});
+    }
+
+    table, tr, th, td {
+    border: 1px solid black;
+    }
+  </style>
+  
+  <body>
+    <h1>{{header}}</h1>
+    Check out <span>{{ rjob }}</span>! There's a <span>{{ jprob }}</span>% chance you'll pursue this profession.
+    <br>
+    Or, check out one of these choices below!
+    <br><br>
+    <table>
+      <tr>
+	<th>{{ heading1 }}</th>
+	<th>{{ heading2 }}</th>
+      </tr>
+      {% for key, val in d %}
+      <tr>
+	<td> {{ key }} </td>
+	<td> {{ val }} </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+  
+</html>
