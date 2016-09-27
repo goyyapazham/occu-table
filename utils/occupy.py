@@ -1,10 +1,9 @@
-from flask import Flask, render_template
 import random
 
 # open file and sanitize data
 ## takes no inputs
 def get_file():
-    f = open("occupations.csv", "r")
+    f = open("data/occupations.csv", "r")
     L = f.readlines()[1:-1]
     for i in range(len(L)):
         L[i] = L[i].replace('\"', '')
@@ -46,18 +45,3 @@ def randomizer( r, d ):
             return key
         x -= 1
     return "none"
-
-## setting up the Flask app
-app = Flask(__name__)
-
-@app.route("/")
-def run():
-    lines = get_file()
-    ranges = set_ranges(lines)
-    duck = make_dict(lines)
-    x = randomizer(ranges, duck)
-    return render_template("main.html", title = "TITLE", r = random.randint(100,200), g = random.randint(100, 200), b = random.randint(100, 200), header = "So you want to get a job?", heading1 = "OCCUPATION", heading2 = "PERCENTAGE", d = duck.items(), rjob = x, jprob = duck[x])
-
-if __name__ == '__main__':
-    app.debug = True
-    app.run()
